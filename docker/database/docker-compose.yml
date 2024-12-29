@@ -1,0 +1,22 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: examplepassword  
+      MYSQL_DATABASE: exampledb          
+      MYSQL_USER: root                     
+      MYSQL_PASSWORD: admin
+    ports:
+      - "3306:3306"
+
+  postgres:
+    image: postgres:13
+    container_name: postgres-container
+    environment:
+      POSTGRES_PASSWORD: examplepassword  
+      POSTGRES_DB: exampledb             
+      POSTGRES_USER: user   
+    ports:
+      - "5432:5432" 
+
