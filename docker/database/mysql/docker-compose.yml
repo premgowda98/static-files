@@ -10,13 +10,17 @@ services:
     ports:
       - "3306:3306"
 
-  postgres:
-    image: postgres:13
-    container_name: postgres-container
+  mysql-workbench:
+    image: lscr.io/linuxserver/mysql-workbench:latest
+    container_name: mysql-workbench
+    cap_add:
+      - IPC_LOCK
     environment:
-      POSTGRES_PASSWORD: examplepassword  
-      POSTGRES_DB: exampledb             
-      POSTGRES_USER: user   
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
     ports:
-      - "5432:5432" 
+      - 3000:3000
+      - 3001:3001
+    restart: unless-stopped
 
