@@ -1,0 +1,22 @@
+services:
+  postgres-test:
+    image: postgres:latest
+    container_name: postgres-test
+    environment:
+      POSTGRES_USER: premgowda
+      POSTGRES_PASSWORD: premgowda
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5433:5432"
+
+  pgbouncer:
+    image: edoburu/pgbouncer:latest
+    container_name: pgbouncer
+    ports:
+      - "6432:6432"
+    depends_on:
+      - postgres-test
+    volumes:
+      - "./pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini"
+      - "./userlist.txt:/etc/pgbouncer/userlist.txt"
+
